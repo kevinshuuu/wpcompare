@@ -11,9 +11,9 @@ class IndexController < ApplicationController
     @user1 = params[:user1] || 'wyaeiga'
     @user2 = params[:user2] || 'avrex'
 
-    user1_route = 
+    user1_route =
       URI.parse("http://api.whatpulse.org/user.php?user=#{@user1}&format=json")
-    user2_route = 
+    user2_route =
       URI.parse("http://api.whatpulse.org/user.php?user=#{@user2}&format=json")
 
     user1_req = Net::HTTP::Get.new(user1_route)

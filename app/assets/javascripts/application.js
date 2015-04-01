@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require Chart.min
+//= require jquery.arctext
+//= require nprogress
 //= require index
-//= require Chart

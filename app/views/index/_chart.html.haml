@@ -1,9 +1,0 @@
-%section{:class => "page1 canvas-container"}
-  %p{:class => "canvas-label display_none"} 
-    = chart_type.capitalize
-    - if defined? chart_units
-      %span{class: 'label-detail'}
-        (in #{chart_units})
-  %canvas{:id => "#{chart_type}_chart", :width => "400", :height => "400"}
-  %p{:class => "chart-label #{chart_type}_right display_none"}
-  %p{:class => "chart-label #{chart_type}_left display_none"}

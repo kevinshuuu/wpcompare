@@ -1,6 +1,6 @@
 %h2 WhatPulse Comparator
-%form{:id => "users_form", :onSubmit => "return false;", :role => "form", :class => "form-inline"}
-  %input{:type => "text", :name => "user1", :class => "form-control", :value => @user1, :id => 'user1'} 
-  %input{:type => "text", :name => "user2", :class => "form-control", :value => @user2, :id => 'user2'} 
-  %input{:type => "submit", :value => "Compare!", :class => "btn btn-primary"}
+%form.form-inline#users_form{ onSubmit: 'return false;', role: 'form' }
+  %input.form-control#user1{ type: 'text', name: 'user1', value: @user1 }
+  %input.form-control#user2{ type: 'text', name: 'user2', value: @user2 }
+  %input.form-control.btn.btn-primary{ type: 'submit', value: 'Compare!' }
 %br

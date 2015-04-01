@@ -6,12 +6,10 @@
   width: 434px;
   height: 100px;
   position: absolute;
-
-  &.initial {
-    top: 35%;
-    left: 50%;
-    margin-left: -217px;
-  }
+  top: 35%;
+  left: 50%;
+  margin-left: -217px;
+  z-index: 1;
 
   h2 {
     text-align: center;
@@ -49,6 +47,11 @@
 
 .label-detail {
   font-size: 50%;
+}
+
+.chart {
+  position: absolute;
+  background: #fff;
 }
 
 @for $i from 0 through 359 {

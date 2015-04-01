@@ -3,7 +3,9 @@
   %head
     %title WPC
     = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
     %link{rel: 'stylesheet', type:'text/css', href:'http://bootswatch.com/lumen/bootstrap.min.css'}
-    %link{rel: 'stylesheet', type:'text/css', href:'index.css'}
+
   %body
     = yield
