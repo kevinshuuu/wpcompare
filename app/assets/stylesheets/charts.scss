@@ -1,0 +1,38 @@
+@import 'mixins';
+
+@include keyframes(unzoom-fade) {
+  0% {
+    @include scale(scale(1,1));
+    opacity: 1;
+  }
+  100% {
+    @include scale(scale(0.5,0.5));
+    opacity: 0;
+  }
+}
+
+@for $i from 0 through 359 {
+  .deg#{$i} {
+    $should_be_upside_down: $i>90 and $i<270;
+    $angle: #{(90-$i)*-1}deg;
+    @include rotate_label($angle, $should_be_upside_down);
+  }
+}
+
+.chart {
+  position: absolute;
+  background: #fff;
+  &:not(.chart-active) {
+    @include animation(unzoom-fade, 1s);
+  }
+
+  &.chart-active {
+    @include animation(unzoom-fade, 1s, 1s, reverse);
+  }
+}
+
+.chart-control {
+  margin-top: 410px;
+  position: absolute;
+}
+

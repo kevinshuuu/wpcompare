@@ -1,30 +1,30 @@
 $ ->
   $('.keys-button').click ->
     $('.disabled').removeClass('disabled')
-    $('.active-chart').removeClass('active-chart')
+    $('.chart-active').removeClass('chart-active')
     $(this).addClass('disabled')
-    $('.keys').addClass('active-chart')
+    $('.keys').addClass('chart-active')
 
   $('.clicks-button').click ->
     $('.disabled').removeClass('disabled')
-    $('.active-chart').removeClass('active-chart')
+    $('.chart-active').removeClass('chart-active')
     $(this).addClass('disabled')
-    $('.clicks').addClass('active-chart')
+    $('.clicks').addClass('chart-active')
 
   $('.download-button').click ->
     $('.disabled').removeClass('disabled')
-    $('.active-chart').removeClass('active-chart')
+    $('.chart-active').removeClass('chart-active')
     $(this).addClass('disabled')
-    $('.download').addClass('active-chart')
+    $('.download').addClass('chart-active')
 
   $('.upload-button').click ->
     $('.disabled').removeClass('disabled')
-    $('.active-chart').removeClass('active-chart')
+    $('.chart-active').removeClass('chart-active')
     $(this).addClass('disabled')
-    $('.upload').addClass('active-chart')
+    $('.upload').addClass('chart-active')
 
   $('.uptime-button').click ->
     $('.disabled').removeClass('disabled')
-    $('.active-chart').removeClass('active-chart')
+    $('.chart-active').removeClass('chart-active')
     $(this).addClass('disabled')
-    $('.uptime').addClass('active-chart')
+    $('.uptime').addClass('chart-active')

@@ -1,9 +1,6 @@
-// Place all the styles related to the index controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'mixins';
 
-.query-container {
-  width: 434px;
+.query-container { width: 434px;
   height: 100px;
   position: absolute;
   top: 35%;
@@ -16,56 +13,15 @@
   }
 }
 
-.canvas-container {
-}
-
 .canvases-container {
   width: 400px;
   margin-top: 150px;
 }
 
-.canvas-label {
-  text-align: center;
-  vertical-align: middle;
-  width: 200px;
-  position: absolute;
-  margin-left: 100px;
-  margin-top: 180px;
-  font-size: 200%;
+@include keyframes(slide) {
+  100% { top: 10px }
 }
 
-.chart-label {
-  text-align: center;
-  vertical-align: middle;
-  width: 200px;
-  position: absolute;
-  margin-left: 100px;
-  margin-top: -225px;
-  font-size: 200%;
-  color: #fffef7;
-}
-
-.label-detail {
-  font-size: 50%;
-}
-
-.active-chart {
-  z-index: 9999;
-}
-
-.chart {
-  position: absolute;
-  background: #fff;
-}
-
-.chart-control {
-  margin-top: 410px;
-  position: absolute;
-}
-
-@for $i from 0 through 359 {
-  .deg#{$i} {
-    $should_be_upside_down : $i>90 and $i<270;
-    -webkit-transform: rotate(#{(90-$i)*-1}deg) translate(5.3em) rotate(#{if($should_be_upside_down, 270, 90)}deg);
-  }
+.query-container-top {
+  @include animation(slide, 0.5s);
 }

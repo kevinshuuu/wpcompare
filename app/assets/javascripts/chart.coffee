@@ -1,7 +1,7 @@
 $ ->
   $('#users_form').submit ->
     NProgress.start()
-    $('.query-container').animate({top:'10px'})
+    $('.query-container').addClass('query-container-top')
 
     chartIds = ['#keys-chart', '#clicks-chart', '#download-chart', '#upload-chart', '#uptime-chart']
     resultKeys = [ 'Keys', 'Clicks', 'DownloadMB', 'UploadMB', 'UptimeSeconds' ]
@@ -33,9 +33,10 @@ $ ->
 
       show_labels = () ->
         $('.chart-label').fadeIn()
-        $('.arc_down').arctext({radius:125, dir:1})
-        $('.arc_up').arctext({radius:125, dir:-1})
-      setTimeout show_labels, 1750
+        $('.arc_down').arctext({radius:120, dir:1})
+        $('.arc_up').arctext({radius:120, dir:-1})
+
+      setTimeout show_labels, 2000
 
   parsedAttribute = (results, resultKey) ->
       [ { value: parseInt(results.user2[resultKey]), color:"#79bd9a" },\
