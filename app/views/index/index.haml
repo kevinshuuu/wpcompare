@@ -1,0 +1,10 @@
+.container
+  .query-container.initial.center_column
+    = render partial: 'form'
+
+  .canvases-container.center_column
+    = render partial: 'chart', locals: { chart_type: 'keys' }
+    = render partial: 'chart', locals: { chart_type: 'clicks' }
+    = render partial: 'chart', locals: { chart_type: 'download', chart_units: 'MB' }
+    = render partial: 'chart', locals: { chart_type: 'upload', chart_units: 'MB' }
+    = render partial: 'chart', locals: { chart_type: 'uptime', chart_units: 'sec' }
