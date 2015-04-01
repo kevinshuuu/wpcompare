@@ -1,5 +1,5 @@
-.canvases-container.center-column
-  .keys.chart
+.canvases-container.center-column.display-none
+  .keys.chart.active-chart
     = render partial: 'chart', locals: { chart_type: 'keys' }
 
   .clicks.chart
@@ -13,3 +13,5 @@
 
   .uptime.chart
     = render partial: 'chart', locals: { chart_type: 'uptime', chart_units: 'sec' }
+
+  = render partial: 'chart_control'

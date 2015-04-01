@@ -49,9 +49,18 @@
   font-size: 50%;
 }
 
+.active-chart {
+  z-index: 9999;
+}
+
 .chart {
   position: absolute;
   background: #fff;
+}
+
+.chart-control {
+  margin-top: 410px;
+  position: absolute;
 }
 
 @for $i from 0 through 359 {

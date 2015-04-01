@@ -17,3 +17,5 @@
 //= require jquery.arctext
 //= require nprogress
 //= require index
+//= require chart
+//= require chart_control
