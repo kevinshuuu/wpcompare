@@ -1,16 +1,5 @@
 @import 'mixins';
 
-@include keyframes(unzoom-fade) {
-  0% {
-    @include scale(scale(1,1));
-    opacity: 1;
-  }
-  100% {
-    @include scale(scale(0.5,0.5));
-    opacity: 0;
-  }
-}
-
 @for $i from 0 through 359 {
   .deg#{$i} {
     $should_be_upside_down: $i>90 and $i<270;
@@ -22,12 +11,11 @@
 .chart {
   position: absolute;
   background: #fff;
-  &:not(.chart-active) {
-    @include animation(unzoom-fade, 1s);
-  }
+  opacity: 0;
+  @include transition(all 0.5s);
 
   &.chart-active {
-    @include animation(unzoom-fade, 1s, 1s, reverse);
+    opacity: 1;
   }
 }
 

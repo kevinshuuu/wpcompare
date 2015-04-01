@@ -13,12 +13,6 @@
           animation-fill-mode: forwards;
 }
 
-@mixin scale($scale) {
-  -webkit-transform: $scale;
-      -ms-transform: $scale;
-          transform: $scale;
-}
-
 @mixin rotate_label($angle, $should_be_upside_down) {
   @if($should_be_upside_down) {
     -webkit-transform: rotate($angle) translate(5.3em) rotate(270deg);
@@ -29,4 +23,12 @@
          -o-transform: rotate($angle) translate(5.3em) rotate(90deg);
             transform: rotate($angle) translate(5.3em) rotate(90deg);
   }
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
 }
