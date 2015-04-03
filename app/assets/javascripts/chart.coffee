@@ -4,7 +4,7 @@ $ ->
     $('.query-container').addClass('query-container-top')
 
     chartIds = ['#keys-chart', '#clicks-chart', '#download-chart', '#upload-chart', '#uptime-chart']
-    resultKeys = [ 'Keys', 'Clicks', 'DownloadMB', 'UploadMB', 'UptimeSeconds' ]
+    resultKeys = [ 'keys', 'clicks', 'download', 'upload', 'uptime' ]
     labelLeft = [ '.keys-left', '.clicks-left', '.download-left', '.upload-left', '.uptime-left' ]
     labelRight = [ '.keys-right', '.clicks-right', '.download-right', '.upload-right', '.uptime-right' ]
 
@@ -16,11 +16,8 @@ $ ->
       NProgress.done()
 
       results =
-        user1 : ""
-        user2 : ""
-
-      results.user1 = jQuery.parseJSON(data.user1)
-      results.user2 = jQuery.parseJSON(data.user2)
+        user1 : data[0]
+        user2 : data[1]
 
       $('.canvases-container').fadeIn()
 
