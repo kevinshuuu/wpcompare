@@ -5,4 +5,5 @@
  *= require index
  *= require labels
  *= require charts
+ *= require chart_control
  */

@@ -12,6 +12,11 @@ class IndexController < ApplicationController
       @download = data_object['DownloadMB']
       @upload = data_object['UploadMB']
       @uptime = data_object['UptimeSeconds']
+      @team = data_object['Team']
+      @computers = data_object['Computers']
+
+      puts @team
+      puts @computers
     end
   end
 
@@ -24,28 +29,22 @@ class IndexController < ApplicationController
     @user1 = params[:user1] || 'wyaeiga'
     @user2 = params[:user2] || 'avrex'
 
-    user1_route =
-      URI.parse("http://api.whatpulse.org/user.php?user=#{@user1}&format=json")
-    user2_route =
-      URI.parse("http://api.whatpulse.org/user.php?user=#{@user2}&format=json")
-
-    user1_req = Net::HTTP::Get.new(user1_route)
-    user1_res = Net::HTTP.start(user1_route.host, user1_route.port) do |http|
-      http.request(user1_req)
-    end
-
-    user2_req = Net::HTTP::Get.new(user2_route)
-    user2_res = Net::HTTP.start(user2_route.host, user2_route.port) do |http|
-      http.request(user2_req)
-    end
-
-    UserData.new(user2_res.body)
-
-    user1_data = UserData.new(user1_res.body)
-    user2_data = UserData.new(user2_res.body)
+    user1_data = poll_api(@user1)
+    user2_data = poll_api(@user2)
 
     results = [user1_data, user2_data]
 
     render json: results.to_json
+  end
+
+  private
+  def poll_api(user_name)
+    external_route = URI.parse("http://api.whatpulse.org/user.php?user=#{user_name}&format=json")
+    api_request = Net::HTTP::Get.new(external_route)
+    api_response = Net::HTTP.start(external_route.host, external_route.port) do |http|
+      http.request(api_request)
+    end
+
+    UserData.new(api_response.body)
   end
 end
