@@ -15,6 +15,8 @@ end
 group :test do
   gem 'cucumber-rails'
   gem 'database_cleaner'
+  gem 'selenium-webdriver'
+  gem 'rspec'
 end
 
 gem 'font-awesome-rails'
