@@ -15,6 +15,7 @@ class IndexController < ApplicationController
       @uptime = data_object['UptimeSeconds']
       @country = data_object['tld']
       @team = {
+        name: data_object['Team']['Name'],
         keys: data_object['Team']['Keys'],
         clicks: data_object['Team']['Clicks'],
         download: data_object['Team']['DownloadMB'],

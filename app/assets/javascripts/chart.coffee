@@ -1,9 +1,12 @@
 $ ->
+  LEFT_USER_COLOR = '#79bd9a'
+  RIGHT_USER_COLOR = '#3b8686'
+  statsTracked = [ 'keys', 'clicks', 'download', 'upload', 'uptime' ]
+
   $('#users_form').submit ->
     NProgress.start()
     moveQueryContainerToTop()
-
-    statsTracked = [ 'keys', 'clicks', 'download', 'upload', 'uptime' ]
+    resetCanvases()
 
     user1 = $('#user1').val()
     user2 = $('#user2').val()
@@ -11,17 +14,20 @@ $ ->
 
     $.get apiRoute, (results) ->
       NProgress.done()
-      # TODO more work on setting up usernames and other user specific info in the side columns
-      setUserNames(user1, user2)
 
+      resetFlags()
+      setUserDetails(user1, results[0], 'left')
+      setUserDetails(user2, results[1], 'right')
+
+      $('.user-info').fadeIn()
       $('.charts-container').fadeIn()
+      $('.chart-label').fadeIn()
 
       for statistic in statsTracked
         chart = $(getChartId(statistic)).get(0).getContext("2d")
         new Chart(chart).Doughnut(parseAttribute(results, statistic))
+        resetLabels(statistic)
         setAndAlignLabels(results, statistic, getLabelLeft(statistic), getLabelRight(statistic))
-
-      $('.chart-label').fadeIn()
 
       showChartDataLabels = () ->
         $('.chart-data-label').fadeIn()
@@ -33,9 +39,16 @@ $ ->
   moveQueryContainerToTop = () ->
     $('.query-container').addClass('query-container-top')
 
-  setUserNames = (leftName, rightName) ->
-    $('.left-column>.user-info>.user-basics>.user-name').html(leftName)
-    $('.right-column>.user-info>.user-basics>.user-name').html(rightName)
+  setUserDetails = (userName, userData, column) ->
+    userTeamData = userData['team']
+    $('.user-name-'+column).html(userName)
+    $('.team-name-'+column).html(userTeamData['name'])
+    $('.team-keys-'+column).html(commaify(userTeamData['keys']))
+    $('.team-clicks-'+column).html(commaify(userTeamData['clicks']))
+    $('.team-download-'+column).html(commaify(userTeamData['download']))
+    $('.team-upload-'+column).html(commaify(userTeamData['upload']))
+    $('.team-uptime-'+column).html(commaify(userTeamData['uptime']))
+    $('.flag-'+column).addClass('flag-'+userData['country'].toLowerCase())
 
   getChartId = (statistic) ->
     '#'+statistic+'-chart'
@@ -47,8 +60,21 @@ $ ->
     '.'+statistic+'-right'
 
   parseAttribute = (results, resultKey) ->
-      [ { value: parseInt(results[1][resultKey]), color: "#79bd9a" },\
-        { value: parseInt(results[0][resultKey]), color: "#3b8686" }]
+      [ { value: parseInt(results[1][resultKey]), color: LEFT_USER_COLOR },\
+        { value: parseInt(results[0][resultKey]), color: RIGHT_USER_COLOR }]
+
+  resetCanvases = () ->
+    $.each $('canvas'), (index, canvas) ->
+      $(canvas).attr('height', 400)
+      $(canvas).attr('width', 400)
+
+  resetFlags = () ->
+    $('.flag-left').removeClass().addClass('flag-left flag')
+    $('.flag-right').removeClass().addClass('flag-right flag')
+
+  resetLabels = (statistic) ->
+    $(getLabelLeft(statistic)).removeClass().addClass('chart-data-label display-none '+statistic+'-left')
+    $(getLabelRight(statistic)).removeClass().addClass('chart-data-label display-none '+statistic+'-right')
 
   setAndAlignLabels = (results, resultKey, labelLeft, labelRight) ->
     user2_statistic = parseInt(results[1][resultKey])

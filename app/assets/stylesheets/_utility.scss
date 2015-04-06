@@ -1,34 +1,3 @@
-.column {
-  width: 400px;
-  display: inline-block;
-  position: absolute;
-}
-
-.center-column {
-  @extend .column;
-
-  margin-left: 400px;
-  height: 600px;
-  background-color: green;
-}
-
-.left-column {
-  @extend .column;
-
-  margin-top: 200px;
-  height: 400px;
-  background-color: red;
-}
-
-.right-column {
-  @extend .column;
-
-  margin-top: 200px;
-  margin-left: 800px;
-  height: 400px;
-  background-color: blue;
-}
-
 .display-none {
   display: none;
 }
