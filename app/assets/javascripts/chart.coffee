@@ -11,25 +11,31 @@ $ ->
 
     $.get apiRoute, (results) ->
       NProgress.done()
+      # TODO more work on setting up usernames and other user specific info in the side columns
+      setUserNames(user1, user2)
 
-      $('.canvases-container').fadeIn()
+      $('.charts-container').fadeIn()
 
       for statistic in statsTracked
         chart = $(getChartId(statistic)).get(0).getContext("2d")
         new Chart(chart).Doughnut(parseAttribute(results, statistic))
         setAndAlignLabels(results, statistic, getLabelLeft(statistic), getLabelRight(statistic))
 
-      $('.canvas-label').fadeIn()
+      $('.chart-label').fadeIn()
 
-      showLabels = () ->
-        $('.chart-label').fadeIn()
+      showChartDataLabels = () ->
+        $('.chart-data-label').fadeIn()
         $('.arc_down').arctext({radius:120, dir:1})
         $('.arc_up').arctext({radius:120, dir:-1})
 
-      setTimeout showLabels, 2000
+      setTimeout showChartDataLabels, 2000
 
   moveQueryContainerToTop = () ->
     $('.query-container').addClass('query-container-top')
+
+  setUserNames = (leftName, rightName) ->
+    $('.left-column>.user-info>.user-basics>.user-name').html(leftName)
+    $('.right-column>.user-info>.user-basics>.user-name').html(rightName)
 
   getChartId = (statistic) ->
     '#'+statistic+'-chart'

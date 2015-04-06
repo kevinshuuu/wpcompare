@@ -3,20 +3,24 @@ class IndexController < ApplicationController
   require 'json'
 
   class UserData
-    attr_accessor :keys, :clicks, :download, :upload, :uptime
+    attr_accessor :keys, :clicks, :download, :upload, :uptime, :country, :team
 
     def initialize(json_string)
       data_object = JSON.parse(json_string)
+
       @keys = data_object['Keys']
       @clicks = data_object['Clicks']
       @download = data_object['DownloadMB']
       @upload = data_object['UploadMB']
       @uptime = data_object['UptimeSeconds']
-      @team = data_object['Team']
-      @computers = data_object['Computers']
-
-      puts @team
-      puts @computers
+      @country = data_object['tld']
+      @team = {
+        keys: data_object['Team']['Keys'],
+        clicks: data_object['Team']['Clicks'],
+        download: data_object['Team']['DownloadMB'],
+        upload: data_object['Team']['UploadMB'],
+        uptime: data_object['Team']['UptimeSeconds']
+      }
     end
   end
 
@@ -29,8 +33,8 @@ class IndexController < ApplicationController
     @user1 = params[:user1] || 'wyaeiga'
     @user2 = params[:user2] || 'avrex'
 
-    user1_data = poll_api(@user1)
-    user2_data = poll_api(@user2)
+    user1_data = poll_external_api(@user1)
+    user2_data = poll_external_api(@user2)
 
     results = [user1_data, user2_data]
 
@@ -38,8 +42,10 @@ class IndexController < ApplicationController
   end
 
   private
-  def poll_api(user_name)
-    external_route = URI.parse("http://api.whatpulse.org/user.php?user=#{user_name}&format=json")
+  def poll_external_api(user_name)
+    external_route =
+      URI.parse("http://api.whatpulse.org/user.php?user=#{user_name}&format=json")
+
     api_request = Net::HTTP::Get.new(external_route)
     api_response = Net::HTTP.start(external_route.host, external_route.port) do |http|
       http.request(api_request)

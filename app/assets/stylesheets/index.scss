@@ -1,21 +1,14 @@
 @import 'mixins';
 
-.query-container { width: 434px;
-  height: 100px;
+.query-container {
   position: absolute;
-  top: 35%;
-  left: 50%;
-  margin-left: -217px;
+  top: 45%;
+  height: 100px;
   z-index: 1;
 
   h2 {
     text-align: center;
   }
-}
-
-.canvases-container {
-  width: 400px;
-  margin-top: 150px;
 }
 
 @include keyframes(slide) {

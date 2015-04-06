@@ -1,11 +1,11 @@
 .container
-  .query-container.center-column
-    = render partial: 'form'
-
   .left-column
     = render partial: 'user_data'
 
   .center-column
+    .query-container
+      = render partial: 'form'
+
     = render partial: 'charts'
 
   .right-column

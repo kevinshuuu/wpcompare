@@ -6,13 +6,13 @@
   margin-left: 100px;
 }
 
-.canvas-label {
+.chart-label {
   @extend .label;
   margin-top: 180px;
   font-size: 200%;
 }
 
-.chart-label {
+.chart-data-label {
   @extend .label;
   margin-top: -225px;
   font-size: 200%;
